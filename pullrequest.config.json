@@ -1,0 +1,23 @@
+{
+  "path": {
+    "baseUrl": "https://XXXXXXXXXXXXX/rest/api/1.0",
+    "projectDir": "$HOME/project"
+  },
+  "project": {
+    "key": "",
+    "slug": "",
+    "name": ""
+  },
+  "bitbucket": {
+    "username": "",
+    "authkey": ""
+  },
+  "reviewers": [
+    {
+      "name": "XXXX"
+    },
+    {
+      "name": "XXXX"
+    }
+  ]
+}
