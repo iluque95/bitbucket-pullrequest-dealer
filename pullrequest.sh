@@ -107,8 +107,13 @@ function checkForCommand() {
                         if [[ "$command" == "brew" ]]; then
                             arch_name="$(uname -m)"
                             if [ "${arch_name}" = "x86_64" ]; then
-                                echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
-                                eval "$(/usr/local/bin/brew shellenv)"
+                                if [ -x "$(command -v /usr/local/bin/brew)" ]; then
+                                    echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
+                                    eval "$(/usr/local/bin/brew shellenv)"
+                                else
+                                    echo 'eval "$(/usr/local/Cellar/brew shellenv)"' >> ~/.zprofile
+                                    eval "$(/usr/local/Cellar/brew shellenv)"
+                                fi
                             elif [ "${arch_name}" = "arm64" ]; then
                                 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
                                 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -116,6 +121,7 @@ function checkForCommand() {
                                 echo "Unknown architecture: ${arch_name}"
                             fi
                             source ~/.zshrc
+                            source ~/.zprofile
                         fi
 
                         break;;
